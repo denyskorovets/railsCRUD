@@ -1,0 +1,23 @@
+<br>
+<a href="/events/">Dashboard </a>
+<a href="/sessions/destroy"> Logout </a>
+<h1>Host: <%= @event.name %></h1>
+<h1>Date: <%= @event.date %></h1>
+<h1>Location: <%= @event.location %>, <%= @event.state %></h1>
+<h1>People who are joining the event: <%= @joins.length %></h1>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>State</th>
+  </tr>
+  <% @joins.each do |join| %>
+  <tr>
+    <td><%= join.user.full_name %></a></td>
+    <td><%= join.user.location %></td>
+    <td><%= join.user.state %></td> 
+  </tr>
+  <% end %>
+</table>

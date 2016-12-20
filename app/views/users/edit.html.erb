@@ -1,0 +1,15 @@
+<form action="/users/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  First Name: <input type="text" name="user[first_name]" value="<%= @user.first_name %>">
+  Last Name: <input type="text" name="user[last_name]" value="<%= @user.last_name %>">
+  Email: <input type="text" name="user[email]" value="<%= @user.email %>">
+  Location: <input type="text" name="user[location]" value="<%= @user.location %>" >   
+  <select name="user[state]" value="<%= @user.state %>">
+    <option value="CA">CA</option>
+    <option value="WA">WA</option>
+    <option value="NY">NY</option>
+    <option value="NV">NV</option>
+  </select>
+  <input type="submit" value="Update Records">
+</form>

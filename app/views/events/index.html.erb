@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+</head>
+<body>
+<h1> Welcome <%= current_user.full_name %></h1>
+<h2> <a href='/sessions/destroy'>Logout</a></h2>
+<h2> <a href='/users/<%= current_user.id %>/edit'>Edit my account</a></h2>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<h2> Here are some of th events at your state! </h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Date</th> 
+    <th>Location</th>
+    <th>Host</th>
+    <th>Action/Status</th>
+  </tr>
+  <% @events_local.each do |event| %>
+  <tr>
+    <td><a href="/events/show/<%= event.id %>"><%= event.name %></a></td>
+    <td><%= event.date %></td> 
+    <td><%= event.location %></td>
+    <td><%= event.host %></td> 
+    <td><a href="/joins/join/<%= event.id %>">Join</a></td> 
+  </tr>
+  <% end %>
+</table>
+
+
+
+<h2> Here are some of th events at other states! </h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Date</th> 
+    <th>Location</th>
+    <th>State</th>
+    <th>Host</th>
+    <th>Action/Status</th>
+  </tr>
+  <% @events_foreign.each do |event| %>
+  <tr>
+    <td><a href="/events/show/<%= event.id %>"><%= event.name %></a></td>
+    <td><%= event.date %></td> 
+    <td><%= event.location %></td>
+    <td><%= event.state %></td> 
+    <td><%= event.host %></td> 
+    <td><a href="/joins/join/<%= event.id %>">Join</a></td> 
+  </tr>
+  <% end %>
+</table>
+
+
+
+<h2>Add Event!</h2>
+<form action="/events/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  Name: <input type="text" name="event[name]">
+  Date: <input type="date" name="event[date]">
+  Location: <input type="text" name="event[location]"> 
+  <select name="event[state]">
+    <option value="CA">CA</option>
+    <option value="WA">WA</option>
+    <option value="NY">NY</option>
+    <option value="NV">NV</option>
+  </select>
+  <input type="submit" value="Register">
+</form>
+</body>
+</html>
