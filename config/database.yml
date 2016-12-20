@@ -86,5 +86,5 @@ test:
 production:
   <<: *default
   database: beltPrepFinal1
-  username: postgres
-  password: postgres
+  username: ubuntu
+  password:
